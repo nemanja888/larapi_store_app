@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
 
             $table->foreign('seller_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
