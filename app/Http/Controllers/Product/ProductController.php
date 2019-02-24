@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 class ProductController extends ApiController
 {
     /**
+     * ProductController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

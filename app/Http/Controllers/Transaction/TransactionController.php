@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class TransactionController extends ApiController
 {
     /**
+     * TransactionController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('scope:read-general')->only(['show']);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

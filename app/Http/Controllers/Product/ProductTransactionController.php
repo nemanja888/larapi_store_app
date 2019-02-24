@@ -9,6 +9,13 @@ use App\Http\Controllers\ApiController;
 class ProductTransactionController extends ApiController
 {
     /**
+     * ProductTransactionController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    /**
      * @param Product $product
      * @return \Illuminate\Http\JsonResponse
      */

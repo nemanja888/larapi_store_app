@@ -9,6 +9,19 @@ use App\Http\Controllers\ApiController;
 
 class SellerCategoryController extends ApiController
 {
+    /**
+     * SellerCategoryController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('scope:read-general')->only(['index']);
+    }
+
+    /**
+     * @param Seller $seller
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Seller $seller)
     {
         $categories = $seller->products()

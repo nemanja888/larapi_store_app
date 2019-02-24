@@ -10,6 +10,15 @@ use App\Http\Controllers\ApiController;
 class ProductCategoryController extends ApiController
 {
     /**
+     * ProductCategoryController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index']);
+        $this->middleware('auth:api')->except(['index']);
+        $this->middleware('scope:manage-products')->except(['index']);
+    }
+    /**
      * @param Product $product
      * @return \Illuminate\Http\JsonResponse
      */

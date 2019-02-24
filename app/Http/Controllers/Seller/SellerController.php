@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class SellerController extends ApiController
 {
     /**
+     * SellerController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('scope:read-general')->only(['show']);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -6,11 +6,24 @@ use App\Http\Controllers\ApiController;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Mail\UserCreated;
+use App\Transformers\UserTransformer;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends ApiController
 {
+
+    /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['store','resend']);
+        $this->middleware('auth:api')->except(['store','verify','resend']);
+        $this->middleware('transform.input:' . UserTransformer::class)->only(['store', 'update']);
+        $this->middleware('scope:manage-account')->only(['show', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -7,7 +7,13 @@ use App\Http\Controllers\ApiController;
 
 class CategoryTransactionController extends ApiController
 {
-
+    /**
+     * CategoryTransactionController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * @param Category $category
      * @return \Illuminate\Http\JsonResponse

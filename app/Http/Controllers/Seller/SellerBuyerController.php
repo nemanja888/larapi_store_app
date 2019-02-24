@@ -8,6 +8,17 @@ use App\Http\Controllers\ApiController;
 
 class SellerBuyerController extends ApiController
 {
+    /**
+     * SellerBuyerController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    /**
+     * @param Seller $seller
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Seller $seller)
     {
         $buyers = $seller->products()

@@ -8,7 +8,13 @@ use App\Http\Controllers\ApiController;
 
 class CategorySellerController extends ApiController
 {
-
+    /**
+     * CategorySellerController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * @param Category $category
      * @return \Illuminate\Http\JsonResponse

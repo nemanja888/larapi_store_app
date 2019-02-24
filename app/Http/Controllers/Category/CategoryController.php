@@ -6,11 +6,22 @@ use App\Category;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\UpdateCategory;
+use App\Transformers\CategoryTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CategoryController extends ApiController
 {
+    /**
+     * CategoryController constructor.
+     */
+    public function __construct()
+    {
+
+        $this->middleware('client.credentials')->only(['index', 'show']);
+        $this->middleware('auth:api')->except(['index', 'show']);
+        $this->middleware('transform.input:' . CategoryTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

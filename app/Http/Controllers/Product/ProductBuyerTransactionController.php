@@ -5,12 +5,26 @@ namespace App\Http\Controllers\Product;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Product;
 use App\Transaction;
+use App\Transformers\TransactionTransformer;
 use App\User;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
 
 class ProductBuyerTransactionController extends ApiController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('transform.input:' . TransactionTransformer::class)->only('store');
+        $this->middleware('scope:purchase-product')->only('store');
+    }
+
+    /**
+     * @param StoreTransactionRequest $request
+     * @param Product $product
+     * @param User $buyer
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function store(StoreTransactionRequest $request, Product $product, User $buyer)
     {
         if ($buyer->id == $product->seller->id) {

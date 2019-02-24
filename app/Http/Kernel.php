@@ -58,11 +58,15 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'client.credentials' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'signature' => \App\Http\Middleware\SignatureMiddleware::class,
+        'transform.input' => \App\Http\Middleware\TransformInput::class,
     ];
 
     /**
